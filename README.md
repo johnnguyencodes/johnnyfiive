@@ -1,5 +1,23 @@
 # Hydrogen template: Skeleton
 
+### //BEGIN: Note from the repo-owner
+
+This project serves as the boilerplate to build a hydrogen storefront with mock store data by following this [tutorial](https://shopify.dev/docs/custom-storefronts/hydrogen/building/begin-development).
+
+After running `npm create @shopify/hydrogen@latest`, the following configurations were entered:
+
+- Connect to Shopify: <strong>Use sample data from Mock.shop.</strong>
+- Where would you like to create your storefront? <strong>hydrogen-storefront</strong>
+- Select a language: <strong>TypeScript</strong>
+- Select a styling library: <strong>Tailwind</strong>
+- Install dependencies with npm? <strong>(y) Yes</strong>
+- Create a global `h2` alias? <strong>(y) Yes</strong>
+- Do you want to scaffold routes and core functionality? <strong>(n) No, set up later</strong>
+
+Please see `Additional Configurations` below for other changes.
+
+### //END: Note from the repo-owner
+
 Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dovetail with [Remix](https://remix.run/), Shopify’s full stack web framework. This template contains a **minimal setup** of components, queries and tooling to get started with Hydrogen.
 
 [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
@@ -47,6 +65,16 @@ Git clone repo
 
 ```bash
 git clone https://github.com/johnnguyencodes/hydrogen-boilerplate.git <name of local folder>
+```
+
+Create a `.env` file at the root level, and enter the following:
+
+```bash
+# The variables added in this file are only available locally in MiniOxygen.
+# Run `h2 link` to also inject environment variables from your storefront,
+# or `h2 env pull` to populate this file.
+SESSION_SECRET="foobar"
+PUBLIC_STORE_DOMAIN="mock.shop"
 ```
 
 ## Building for production
