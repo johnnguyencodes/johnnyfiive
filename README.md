@@ -38,7 +38,7 @@ Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dov
 
 ## Additional configurations
 
-- Tailwind CSS v3.4.0, and the following plugins:
+- Tailwind CSS v3.4.0, and the following plugins/packages:
   - The theme has been extended with the following:
     - `xs` as an additional breakpoint at 375px minimum
     - Inter var as the Font Family
