@@ -3,6 +3,7 @@ import {useLoaderData} from 'react-router';
 import {Image} from '@shopify/hydrogen-react';
 import ProductOptions from '~/components/ProductOptions';
 import {Money, ShopPayButton} from '@shopify/hydrogen';
+import {CartForm} from '@shopify/hydrogen';
 
 const seo = ({data}) => ({
   title: data?.collection?.title,
@@ -165,6 +166,37 @@ export default function ProductHandle() {
               width={'400px'}
             />
           )}
+          <CartForm
+            route="/cart"
+            inputs={{
+              lines: [
+                {
+                  merchandiseId: selectedVariant.id,
+                },
+              ],
+            }}
+            action={CartForm.ACTIONS.LinesAdd}
+          >
+            {(fetcher) => (
+              <>
+                <button
+                  type="submit"
+                  onClick={() => {
+                    window.location.href = window.location.href + '#cart-aside';
+                  }}
+                  disabled={
+                    !selectedVariant.availableForSale ??
+                    fetcher.state !== 'idle'
+                  }
+                  className="w-full px-4 py-2 text-white uppercase transition-colors duration-150 bg-black border border-black rounded-sm hover:bg-white hover:text-black"
+                >
+                  {selectedVariant.availableForSale
+                    ? 'Add to cart'
+                    : 'Sold out'}
+                </button>
+              </>
+            )}
+          </CartForm>
           <div
             className="pt-6 prose text-black border-t border-gray-200 text-md"
             dangerouslySetInnerHTML={{__html: product.descriptionHtml}}
