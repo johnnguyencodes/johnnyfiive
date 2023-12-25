@@ -1,30 +1,36 @@
-import type { Config } from "tailwindcss";
+import type {Config} from 'tailwindcss';
 
-const defaultTheme = require("tailwindcss/defaultTheme");
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 export default {
-  content: ["./app/**/*.{js,jsx,ts,tsx,md,mdx}"],
-  darkMode: ["class"],
+  content: ['./app/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  darkMode: ['class'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
     screens: {
-      xs: "375px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
+      xs: '375px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
     },
   },
   plugins: [
-    require("tailwindcss-debug-screens"),
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/container-queries"),
+    require('tailwindcss-debug-screens'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/container-queries'),
   ],
+  'tailwind-class-sorter.classRegex': {
+    rescript: [
+      'className\\w*?=\\w*("[\\s\\S]+?")|className\\w*?=\\w*?\\{([\\s\\S]+?)\\}',
+      '"(.+?)"',
+    ],
+  },
 } satisfies Config;
