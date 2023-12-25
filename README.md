@@ -51,9 +51,12 @@ Hydrogen is Shopify’s stack for headless commerce. Hydrogen is designed to dov
 - Zod
   - Installed, but not used yet
 
+An unknown issue is preventing the Tailwind Prettier Plugin from auto-sorting tailwind classes in a Hydrogen project. A workaround is to install the [Headwind VS Code extension](https://marketplace.visualstudio.com/items?itemName=heybourn.headwind).
+
 ## Future considerations
 
-- Will Integrate with Vite when available
+- While Vite works with Remix, the integration is broken with Hydrogen. I will update this boilerplate once it is available.
+- If you wish to work on a Remix project with this working out of the box, along with autosorting Tailwind classes, please see my [Remix Boilerplate repo](https://github.com/johnnguyencodes/remix-tailwind-vite-boilerplate).
 
 ## Getting started
 
