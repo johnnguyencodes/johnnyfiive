@@ -113,22 +113,6 @@ export type FooterQuery = {
   >;
 };
 
-export type FeaturedCollectionsQueryVariables = StorefrontAPI.Exact<{
-  [key: string]: never;
-}>;
-
-export type FeaturedCollectionsQuery = {
-  collections: {
-    nodes: Array<
-      Pick<StorefrontAPI.Collection, 'id' | 'title' | 'handle'> & {
-        image?: StorefrontAPI.Maybe<
-          Pick<StorefrontAPI.Image, 'altText' | 'width' | 'height' | 'url'>
-        >;
-      }
-    >;
-  };
-};
-
 export type CollectionDetailsQueryVariables = StorefrontAPI.Exact<{
   handle: StorefrontAPI.Scalars['String']['input'];
   first?: StorefrontAPI.InputMaybe<StorefrontAPI.Scalars['Int']['input']>;
@@ -175,6 +159,22 @@ export type CollectionDetailsQuery = {
       };
     }
   >;
+};
+
+export type FeaturedCollectionsQueryVariables = StorefrontAPI.Exact<{
+  [key: string]: never;
+}>;
+
+export type FeaturedCollectionsQuery = {
+  collections: {
+    nodes: Array<
+      Pick<StorefrontAPI.Collection, 'id' | 'title' | 'handle'> & {
+        image?: StorefrontAPI.Maybe<
+          Pick<StorefrontAPI.Image, 'altText' | 'width' | 'height' | 'url'>
+        >;
+      }
+    >;
+  };
 };
 
 export type ProductQueryVariables = StorefrontAPI.Exact<{
@@ -350,13 +350,13 @@ interface GeneratedQueryTypes {
     return: FooterQuery;
     variables: FooterQueryVariables;
   };
-  '#graphql\n  query FeaturedCollections {\n    collections(first: 3, query:"collection_type:smart") {\n      nodes {\n        id\n        title\n        handle\n        image {\n          altText\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n': {
-    return: FeaturedCollectionsQuery;
-    variables: FeaturedCollectionsQueryVariables;
-  };
   '#graphql\n    query CollectionDetails(\n        $handle: String!\n        $first: Int\n        $last: Int\n        $startCursor: String\n        $endCursor: String\n    ) {\n        collection(handle: $handle) {\n            title\n            description\n            handle\n            products(\n                first: $first,\n                last: $last,\n                before: $startCursor,\n                after: $endCursor,\n            ) {\n                nodes {\n                    id\n                    title\n                    publishedAt\n                    handle\n                    variants(first: 1) {\n                        nodes {\n                            id\n                            image {\n                                url\n                                altText\n                                width\n                                height\n                            }\n                            price {\n                                amount\n                                currencyCode\n                            }\n                            compareAtPrice {\n                                amount\n                                currencyCode\n                            }\n                        }\n                    }\n                }\n                pageInfo {\n                    hasPreviousPage\n                    hasNextPage\n                    startCursor\n                    endCursor\n                }\n            }\n        }\n    }\n': {
     return: CollectionDetailsQuery;
     variables: CollectionDetailsQueryVariables;
+  };
+  '#graphql\n  query FeaturedCollections {\n    collections(first: 3, query:"collection_type:smart") {\n      nodes {\n        id\n        title\n        handle\n        image {\n          altText\n          width\n          height\n          url\n        }\n      }\n    }\n  }\n': {
+    return: FeaturedCollectionsQuery;
+    variables: FeaturedCollectionsQueryVariables;
   };
   '#graphql\n  query product($handle: String!, $selectedOptions: [SelectedOptionInput!]!) {\n    shop {\n      primaryDomain {\n        url\n      }\n    }\n    product(handle: $handle) {\n      id\n      title\n      handle\n      vendor\n      description\n      descriptionHtml\n      featuredImage{\n        id\n        url\n        altText\n        width\n        height\n      }\n      options {\n        name,\n        values\n      }\n      selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions) {\n        id\n        availableForSale\n        selectedOptions {\n          name\n          value\n        }\n        image {\n          id\n          url\n          altText\n          width\n          height\n        }\n        price {\n          amount\n          currencyCode\n        }\n        compareAtPrice {\n          amount\n          currencyCode\n        }\n        sku\n        title\n        unitPrice {\n          amount\n          currencyCode\n        }\n        product {\n          title\n          handle\n        }\n      }\n      variants(first: 1) {\n        nodes {\n          id\n          title\n          availableForSale\n          price {\n            currencyCode\n            amount\n          }\n          compareAtPrice {\n            currencyCode\n            amount\n          }\n          selectedOptions {\n            name\n            value\n          }\n        }\n      }\n    }\n  }\n': {
     return: ProductQuery;
