@@ -1,5 +1,8 @@
 import {Link, useLoaderData} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen';
+import {LoaderArgs} from '@remix-run/node';
+import {json} from '@shopify/remix-oxygen';
+import {Blog} from '~/lib/interface';
+import {sanityClient} from '~/lib/sanity';
 
 export function meta() {
   return [
@@ -11,60 +14,53 @@ export function meta() {
   ];
 }
 
-const COLLECTIONS_QUERY = `#graphql
-  query FeaturedCollections {
-    collections(first: 3, query:"collection_type:smart") {
-      nodes {
-        id
-        title
-        handle
-        image {
-          altText
-          width
-          height
-          url
-        }
-      }
+interface iAppProps {
+  blogs: Blog[];
+}
+
+export async function loader({}: LoaderArgs) {
+  const query = `
+    *[_type == 'blog' ] {
+      title,
+      slug,
+      "seoImageUrl": seo.image.asset->url
     }
-  }
-`;
+  `;
 
-export async function loader({context}) {
-  return await context.storefront.query(COLLECTIONS_QUERY);
+  const blogs = await sanityClient.fetch(query);
+
+  return json({blogs});
 }
 
-export default function Index() {
-  const {collections} = useLoaderData();
-
+const IndexPage = () => {
+  const {blogs} = useLoaderData<typeof loader>() as iAppProps;
   return (
-    <div>
-      <section className="w-full gap-4">
-        <h2 className="font-bold whitespace-pre-wrap max-w-prose text-lead">
-          Collections
-        </h2>
-        <div className="grid grid-flow-row grid-cols-1 gap-2 gap-y-6 md:gap-4 lg:gap-6 sm:grid-cols-3">
-          {collections.nodes.map((collection) => {
-            return (
+    <>
+      <Link to="/collections">Collections</Link>
+      <div>
+        IndexPage
+        <ul>
+          {blogs.map((blog) => (
+            <li key={blog.slug.current}>
               <Link
-                to={`/collections/${collection.handle}`}
-                key={collection.id}
+                className="relative group"
+                to={`/blog/${blog.slug.current}`}
               >
-                <div className="grid gap-4">
-                  {collection?.image && (
-                    <Image
-                      alt={`Image of ${collection.title}`}
-                      data={collection.image}
-                      key={collection.id}
-                      sizes="(max-width: 32em) 100vw,33vw"
-                      crop="center"
-                    />
-                  )}
-                </div>
+                <h2>{blog.title}</h2>
+                <img
+                  className="object-contain object-center w-full h-full"
+                  src={blog.seoImageUrl}
+                  alt={blog.title}
+                  width={500}
+                  height={500}
+                />
               </Link>
-            );
-          })}
-        </div>
-      </section>
-    </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
-}
+};
+
+export default IndexPage;
