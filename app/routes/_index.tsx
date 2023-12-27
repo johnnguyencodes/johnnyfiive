@@ -36,14 +36,16 @@ const IndexPage = () => {
   const {blogs} = useLoaderData<typeof loader>() as iAppProps;
   return (
     <>
-      <Link to="/collections">Collections</Link>
+      <Link className="text-black dark:text-white" to="/collections">
+        Collections
+      </Link>
       <div>
         IndexPage
         <ul>
           {blogs.map((blog) => (
             <li key={blog.slug.current}>
               <Link
-                className="relative group"
+                className="relative text-black dark:text-white group"
                 to={`/blog/${blog.slug.current}`}
               >
                 <h2>{blog.title}</h2>
