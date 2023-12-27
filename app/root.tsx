@@ -27,7 +27,11 @@ import {Layout} from '~/components/Layout';
 import tailwindCss from './styles/tailwind.css';
 import {ReactNode} from 'react';
 import CustomHeader from './components/CustomHeader';
-import {Theme, ThemeProvider, useTheme} from '~/utils/theme-provider';
+import {
+  NonFlashOfWrongThemeEls,
+  ThemeProvider,
+  useTheme,
+} from './utils/theme-provider';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -127,6 +131,7 @@ function App() {
         <Seo />
         <Meta />
         <Links />
+        <NonFlashOfWrongThemeEls />
       </head>
       <body>
         <div className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
