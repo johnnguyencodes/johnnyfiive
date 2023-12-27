@@ -1,5 +1,16 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
+  serverNodeBuiltinsPolyfill: {
+    modules: {
+      crypto: true,
+      http: true,
+      https: true,
+      zlib: true,
+      fs: true,
+      stream: true,
+      url: true,
+    },
+  },
   appDirectory: 'app',
   ignoredRouteFiles: ['**/.*'],
   watchPaths: ['./public', './.env'],

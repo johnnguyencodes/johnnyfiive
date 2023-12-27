@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import {Seo} from '@shopify/hydrogen';
 import {useNonce} from '@shopify/hydrogen';
 import {
@@ -24,6 +25,13 @@ import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import {Layout} from '~/components/Layout';
 import tailwindCss from './styles/tailwind.css';
+import {ReactNode} from 'react';
+import CustomHeader from './components/CustomHeader';
+import {
+  NonFlashOfWrongThemeEls,
+  ThemeProvider,
+  useTheme,
+} from './utils/theme-provider';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -110,28 +118,51 @@ export async function loader({context}: LoaderFunctionArgs) {
   );
 }
 
-export default function App() {
+function App() {
   const nonce = useNonce();
   const data = useLoaderData<typeof loader>();
+  const [theme] = useTheme();
 
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(theme)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Seo />
         <Meta />
         <Links />
+        <NonFlashOfWrongThemeEls />
       </head>
       <body>
-        <Layout {...data}>
-          <Outlet />
-        </Layout>
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
-        <LiveReload nonce={nonce} />
+        <div className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
+          <CustomLayout>
+            <Layout {...data}>
+              <Outlet />
+            </Layout>
+            <ScrollRestoration nonce={nonce} />
+            <Scripts nonce={nonce} />
+            <LiveReload nonce={nonce} />
+          </CustomLayout>
+        </div>
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
+
+function CustomLayout({children}: {children: ReactNode}) {
+  return (
+    <div>
+      <CustomHeader />
+      <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">{children}</main>
+    </div>
   );
 }
 
