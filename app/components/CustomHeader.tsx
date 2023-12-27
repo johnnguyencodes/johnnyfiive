@@ -7,7 +7,7 @@ const CustomHeader = () => {
   const [theme, setTheme] = useTheme();
   const toggleTheme = () => {
     setTheme((prevTheme) =>
-      prevTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,
+      prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT,
     );
   };
   return (
@@ -55,7 +55,7 @@ const CustomHeader = () => {
                   Home
                 </NavLink>
                 <button onClick={toggleTheme}>
-                  {theme == Theme.DARK ? (
+                  {theme === Theme.DARK ? (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -77,7 +77,7 @@ const CustomHeader = () => {
                       viewBox="0 0 24 24"
                       strokeWidth="1.5"
                       stroke="currentColor"
-                      className="w-6 h-6 text-gray-500"
+                      className="w-6 h-6"
                     >
                       <path
                         strokeLinecap="round"
