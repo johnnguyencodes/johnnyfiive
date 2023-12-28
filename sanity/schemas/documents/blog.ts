@@ -58,7 +58,7 @@ export default defineField({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'body',
+      type: 'blockContent',
       group: 'editorial',
     }),
 
