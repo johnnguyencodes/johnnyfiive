@@ -10,6 +10,7 @@ import {imageHotspotArrayPlugin} from 'sanity-plugin-hotspot-array'
 import {media, mediaAssetSource} from 'sanity-plugin-media'
 import {customDocumentActions} from './plugins/customDocumentActions'
 import {shopifyAssets} from 'sanity-plugin-shopify-assets'
+import {codeInput} from '@sanity/code-input'
 
 const devOnlyPlugins = [visionTool()]
 
@@ -28,6 +29,7 @@ export default defineConfig({
     colorInput(),
     imageHotspotArrayPlugin(),
     customDocumentActions(),
+    codeInput(),
     media(),
     ...(isDev ? devOnlyPlugins : []),
   ],

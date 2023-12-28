@@ -47,6 +47,13 @@ export default defineField({
       to: [{type: 'colorTheme'}],
       group: 'theme',
     }),
+    // Overview
+    defineField({
+      name: 'overview',
+      title: 'Overview',
+      type: 'text',
+      group: 'editorial',
+    }),
     // Body
     defineField({
       name: 'body',
@@ -54,6 +61,7 @@ export default defineField({
       type: 'body',
       group: 'editorial',
     }),
+
     // SEO
     defineField({
       name: 'seo',
