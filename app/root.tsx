@@ -128,17 +128,15 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <div className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
-          <CustomLayout>
-            <Layout {...data}>
-              <Outlet />
-            </Layout>
-            <ScrollRestoration nonce={nonce} />
-            <Scripts nonce={nonce} />
-            <LiveReload nonce={nonce} />
-          </CustomLayout>
-        </div>
+      <body className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
+        <CustomLayout>
+          <Layout {...data}>
+            <Outlet />
+          </Layout>
+          <ScrollRestoration nonce={nonce} />
+          <Scripts nonce={nonce} />
+          <LiveReload nonce={nonce} />
+        </CustomLayout>
       </body>
     </html>
   );
