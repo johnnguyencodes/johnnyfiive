@@ -2,11 +2,11 @@ import React from 'react';
 import {Link, useLoaderData} from '@remix-run/react';
 import {LoaderArgs} from '@remix-run/node';
 import {json} from '@shopify/remix-oxygen';
-import {Blogpost} from '~/lib/interface';
+import {Blogposts} from '~/lib/interface';
 import {sanityClient} from '~/lib/sanity';
 
 interface iAppProps {
-  blogposts: Blogpost[];
+  blogposts: Blogposts[];
 }
 
 export async function loader({}: LoaderArgs) {
@@ -47,7 +47,7 @@ const Blog = () => {
                   </p>
                 </div>
                 <Link
-                  to={`/blog/${blogpost.slug.current}`}
+                  to={`/post/${blogpost.slug.current}`}
                   className="space-y-3 xl:col-span-3"
                   prefetch="intent"
                 >
