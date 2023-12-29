@@ -153,6 +153,7 @@ export default function AppWithProviders() {
 function CustomLayout({children}: {children: ReactNode}) {
   return (
     <div>
+      {/* <CustomHeader /> */}
       <CustomHeader />
       <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">{children}</main>
     </div>

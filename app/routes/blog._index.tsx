@@ -47,7 +47,7 @@ const Blog = () => {
                   </p>
                 </div>
                 <Link
-                  to={`/post/${blogpost.slug.current}`}
+                  to={`/blog/${blogpost.slug.current}`}
                   className="space-y-3 xl:col-span-3"
                   prefetch="intent"
                 >
