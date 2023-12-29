@@ -28,6 +28,7 @@ import tailwindCss from './styles/tailwind.css';
 import {ReactNode} from 'react';
 import CustomHeader from './components/CustomHeader';
 import {Theme, ThemeProvider, useTheme} from '~/utils/theme-provider';
+import Example from './components/TemplateFile';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -153,7 +154,8 @@ export default function AppWithProviders() {
 function CustomLayout({children}: {children: ReactNode}) {
   return (
     <div>
-      <CustomHeader />
+      {/* <CustomHeader /> */}
+      <Example />
       <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">{children}</main>
     </div>
   );
