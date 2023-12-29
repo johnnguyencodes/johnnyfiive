@@ -8,7 +8,6 @@ import home from './homeStructure'
 import pages from './pageStructure'
 import products from './productStructure'
 import settings from './settingStructure'
-import blogs from './blogStructure'
 
 /**
  * Desk structure overrides
@@ -40,7 +39,6 @@ const hiddenDocTypes = (listItem: ListItemBuilder) => {
     'product',
     'productVariant',
     'settings',
-    'blog',
   ].includes(id)
 }
 
@@ -50,7 +48,6 @@ export const structure: StructureResolver = (S, context) =>
     .items([
       home(S, context),
       pages(S, context),
-      blogs(S, context),
       S.divider(),
       collections(S, context),
       products(S, context),
