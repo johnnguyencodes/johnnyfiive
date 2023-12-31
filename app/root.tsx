@@ -25,7 +25,6 @@ import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import {Layout} from '~/components/Layout';
 import tailwindCss from './styles/tailwind.css';
-import flowbiteCss from 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css';
 import {ReactNode} from 'react';
 import CustomHeader from './components/CustomHeader';
 import {Theme, ThemeProvider, useTheme} from '~/utils/theme-provider';
@@ -53,9 +52,9 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
 
 export function links() {
   return [
-    {rel: 'stylesheet', href: tailwindCss},
     {rel: 'stylesheet', href: resetStyles},
     {rel: 'stylesheet', href: appStyles},
+    {rel: 'stylesheet', href: tailwindCss},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
@@ -129,7 +128,6 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       <body className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
