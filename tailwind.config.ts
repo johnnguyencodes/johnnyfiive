@@ -3,7 +3,10 @@ import type {Config} from 'tailwindcss';
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const config = {
-  content: ['./app/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  content: [
+    './app/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './node_modules/flowbite/**/*.js',
+  ],
   darkMode: ['class'],
   prefix: '',
   theme: {
@@ -89,6 +92,7 @@ const config = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
+    require('flowbite/plugin'),
   ],
   'tailwind-class-sorter.classRegex': {
     rescript: [
