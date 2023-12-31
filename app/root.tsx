@@ -63,14 +63,6 @@ export function links() {
       rel: 'preconnect',
       href: 'https://shop.app',
     },
-    {
-      rel: 'preconnect',
-      href: 'https://cdn.shopify.com',
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://shop.app',
-    },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
 }
