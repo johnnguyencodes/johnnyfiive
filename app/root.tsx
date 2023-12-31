@@ -25,6 +25,7 @@ import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import {Layout} from '~/components/Layout';
 import tailwindCss from './styles/tailwind.css';
+import flowbiteCss from 'https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css';
 import {ReactNode} from 'react';
 import CustomHeader from './components/CustomHeader';
 import {Theme, ThemeProvider, useTheme} from '~/utils/theme-provider';
@@ -128,6 +129,7 @@ function App() {
         <Meta />
         <Links />
       </head>
+      <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
       <body className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
@@ -183,6 +185,7 @@ export function ErrorBoundary() {
         <Meta />
         <Links />
       </head>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
       <body>
         <Layout {...rootData}>
           <div className="route-error">
