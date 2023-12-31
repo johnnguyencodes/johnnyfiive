@@ -130,9 +130,10 @@ function App() {
       </head>
       <body className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
         <CustomLayout>
-          <Layout {...data}>
-            <Outlet />
-          </Layout>
+          {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
+          {/* <Layout {...data}> */}
+          <Outlet />
+          {/* </Layout> */}
           <ScrollRestoration nonce={nonce} />
           <Scripts nonce={nonce} />
           <LiveReload nonce={nonce} />
