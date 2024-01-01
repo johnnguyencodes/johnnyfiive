@@ -14,25 +14,13 @@ const IndexPage = () => {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="pt-6 pb-8 space-y-2 md:space-x-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Home
-          </h1>
-        </div>
         <div className="items-center space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center pt-8">
             <img
               src={Me}
               alt="Image of myself"
-              className="object-cover object-top w-48 h-48 rounded-full"
+              className="object-cover object-top w-24 h-24 rounded-full"
             />
-            <h3 className="pt-4 pb-2 text-2xl font-bold leading-8 tracking-tight">
-              John Nguyen
-            </h3>
-            <p className="text-center">
-              Hey, my name is John and I'm a{' '}
-              <a className="internal-link"> Shopify developer</a>.
-            </p>
             <div className="flex pt-6 space-x-5">
               <a href="https://github.com/johnnguyencodes" target="_blank">
                 <svg
@@ -71,48 +59,6 @@ const IndexPage = () => {
                 </svg>
               </a>
             </div>
-          </div>
-          <div className="pt-8 pb-8 prose prose-lg max-w-none dark:prose-invert xl:col-span-2">
-            <p className="text-lightmode-black dark:text-darkmode-black">
-              Black Lorem{' '}
-              <span className="font-bold transition dark:text-darkmode-black text-lightmode-red hover:text-lightmode-red-400">
-                ipsum dolor sit amet
-              </span>{' '}
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-red dark:text-darkmode-red">
-              Red Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-orange dark:text-darkmode-orange">
-              Orange Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-yellow dark:text-darkmode-yellow">
-              Yellow Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-green dark:text-darkmode-green">
-              Green Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-blue dark:text-darkmode-blue">
-              Blue Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-purple dark:text-darkmode-purple">
-              Purple Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <p className="text-lightmode-white dark:text-darkmode-white">
-              White Lorem{' '}
-              <span className="font-bold transition dark:text-lightmode-red dark:hover:text-lightmode-red-600">
-                ipsum dolor sit amet
-              </span>{' '}
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.
-            </p>
           </div>
         </div>
       </div>

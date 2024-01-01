@@ -78,9 +78,9 @@ const CustomHeader = () => {
     return (
       <button
         onClick={toggleTheme}
-        className="px-3 py-2 ml-4 transition rounded-full shadow-lg dark:hover:ring-white/20 group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 "
+        className="px-3 py-2 ml-4 transition rounded-full shadow-lg dark:hover:ring-white/20 group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:bg-darkmode-black-700"
       >
-        {theme === Theme.DARK ? <SunIcon /> : <MoonIcon />}
+        {theme === Theme.DARK ? <MoonIcon /> : <SunIcon />}
       </button>
     );
   }
@@ -178,14 +178,14 @@ const CustomHeader = () => {
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
-              ? 'relative block px-3 py-2 transition text-teal-500 dark:hover:text-teal-400'
-              : 'relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400'
+              ? 'relative block px-3 py-2 transition text-lightmode-red hover:text-lightmode-red-400 dark:text-darkmode-red dark:hover:text-darkmode-red-400'
+              : 'relative block px-3 py-2 transition hover:text-lightmode-red-400 dark:hover:text-darkmode-red-400'
           }
         >
           {item.name}
           {item.name !== 'GitHub' &&
           item.href.split('/')[1] === pathname.split('/')[1] ? (
-            <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+            <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-lightmode-red/0 via-lightmode-red/40 to-lightmode-red/0 dark:from-darkmode-red/0 dark:via-darkmode-red/40 dark:to-darkmode-red/0 " />
           ) : null}
         </Link>
       </li>
@@ -195,7 +195,7 @@ const CustomHeader = () => {
   function DesktopNavigation() {
     return (
       <nav className="hidden pointer-events-auto sm:block">
-        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
+        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:bg-darkmode-black-700 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
           {navigation.map((item, index) => (
             <DesktopNavItem item={item} key={index}>
               {item.name}

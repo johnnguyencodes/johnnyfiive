@@ -25,13 +25,27 @@ const config = {
       xl: '1280px',
       '2xl': '1536px',
     },
+    theme: {
+      colors: {
+        dark: '#72B42E',
+        midup: '#565656',
+        middle: '#969393',
+        light: '#e3e3e3',
+        white: '#ffffff',
+        black: '#000000',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
-      animation: {
-        'spin-slow': 'spin 3s linear infinite',
-      },
+      typography: ({theme}) => ({
+        maincolors: {
+          css: {
+            '--tw-prose-headings': theme('colors.dark'),
+          },
+        },
+      }),
       colors: {
         'darkmode-black': {
           DEFAULT: '#2C292D',

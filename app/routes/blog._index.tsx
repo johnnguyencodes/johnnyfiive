@@ -31,9 +31,9 @@ const Blog = () => {
   const {blogposts} = useLoaderData<typeof loader>() as iAppProps;
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="divide-y divide-lightmode-black dark:divide-darkmode-white">
         <div className="pt-6 pb-8 space-2 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 text-gray-900 tracking-right dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-right sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             All Blog Posts
           </h1>
         </div>
@@ -42,7 +42,7 @@ const Blog = () => {
             <li key={blogpost._id} className="py-4">
               <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                 <div>
-                  <p className="text-base font-medium leading-6 text-teal-500">
+                  <p className="text-base font-medium leading-6 text-lightmode-red dark:text-darkmode-red">
                     {new Date(blogpost._createdAt).toISOString().split('T')[0]}
                   </p>
                 </div>
@@ -52,11 +52,11 @@ const Blog = () => {
                   prefetch="intent"
                 >
                   <div>
-                    <h3 className="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100">
+                    <h3 className="text-2xl font-bold leading-8 tracking-tight">
                       {blogpost.title}
                     </h3>
                   </div>
-                  <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+                  <div className="prose text-lightmode-black dark:text-darkmode-white max-w-none">
                     <p>{blogpost.overview}</p>
                   </div>
                 </Link>
