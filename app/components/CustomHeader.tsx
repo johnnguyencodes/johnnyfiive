@@ -158,10 +158,7 @@ const CustomHeader = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Popover.Panel
-              focus
-              className="fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-gray-900 dark:ring-zinc-800"
-            >
+            <Popover.Panel className="fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-gray-900 dark:ring-zinc-800">
               <div className="flex flex-row-reverse items-center justify-between">
                 <Popover.Button aria-label="Close menu" className="p-1 -m-1">
                   <CloseIcon className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
