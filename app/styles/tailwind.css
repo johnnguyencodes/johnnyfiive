@@ -74,3 +74,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .internal-link {
+    @apply transition hover:bg-lightmode-highlight dark:hover:bg-darkmode-highlight hover:text-darkmode-black dark:hover:text-lightmode-black after:content-['→'];
+  }
+  .external-link {
+    @apply transition hover:bg-lightmode-highlight dark:hover:bg-darkmode-highlight hover:text-darkmode-black dark:hover:text-lightmode-black after:content-['↗'];
+  }
+}
