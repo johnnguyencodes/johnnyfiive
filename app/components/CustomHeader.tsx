@@ -56,11 +56,9 @@ const CustomHeader = () => {
   }
 
   function MobileNavItem({
-    href,
     children,
     item,
   }: {
-    href: string;
     children: React.ReactNode;
     item: {name: string; href: string};
   }) {
@@ -68,8 +66,8 @@ const CustomHeader = () => {
       <li>
         <Popover.Button
           as={Link}
-          to={href}
-          key={href}
+          to={item.href}
+          key={item.href}
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
@@ -128,9 +126,7 @@ const CustomHeader = () => {
               <nav className="mt-6">
                 <ul className="-my-2 text-base text-left divide-y divide-zinc-100 dark:divide-zinc-100/5">
                   {navigation.map((item) => (
-                    <MobileNavItem item={item} href={item.href}>
-                      {item.name}
-                    </MobileNavItem>
+                    <MobileNavItem item={item}>{item.name}</MobileNavItem>
                   ))}
                 </ul>
               </nav>
