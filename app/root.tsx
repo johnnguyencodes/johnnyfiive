@@ -133,7 +133,7 @@ function App() {
         <Links />
       </head>
       <body
-        className={`h-full text-black bg-white ${debugScreens} dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800`}
+        className={`h-full text-monokai-black bg-monokai-white ${debugScreens} dark:bg-monokai-black dark:text-monokai-white selection:bg-gray-50 dark:selection:bg-gray-800`}
       >
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
