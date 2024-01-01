@@ -1,10 +1,11 @@
-import {useState} from 'react';
+import {Fragment, useState} from 'react';
 import {Dialog} from '@headlessui/react';
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
 import {Theme, useTheme} from '../utils/theme-provider';
 import Me from '../../public/johnny.jpg';
 import {useLocation} from '@remix-run/react';
 import {Link, NavLink} from '@remix-run/react';
+import {Popover, Transition} from '@headlessui/react';
 
 const navigation = [
   {name: 'About', href: '/about'},
@@ -17,7 +18,6 @@ const CustomHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const {pathname} = useLocation();
-  console.log('pathname', pathname);
 
   const [theme, setTheme] = useTheme();
   const toggleTheme = () => {
@@ -26,13 +26,124 @@ const CustomHeader = () => {
     );
   };
 
+  function CloseIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+        <path
+          d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  function ChevronDownIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+    return (
+      <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
+        <path
+          d="M1.75 1.75 4 4.25l2.25-2.5"
+          fill="none"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  function MobileNavItem({
+    children,
+    item,
+  }: {
+    children: React.ReactNode;
+    item: {name: string; href: string};
+  }) {
+    return (
+      <li>
+        <Popover.Button
+          as={Link}
+          to={item.href}
+          key={item.href}
+          className={
+            item.name !== 'GitHub' &&
+            item.href.split('/')[1] === pathname.split('/')[1]
+              ? 'block py-2 transition text-teal-500 dark:hover:text-teal-400'
+              : 'block py-2 transition hover:text-teal-500 dark:hover:text-teal-400'
+          }
+        >
+          {children}
+        </Popover.Button>
+      </li>
+    );
+  }
+
+  function MobileNavigation(
+    props: React.ComponentPropsWithoutRef<typeof Popover>,
+  ) {
+    return (
+      <Popover {...props}>
+        <Popover.Button className="flex items-center px-4 py-2 text-sm font-medium rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
+          Menu
+          <ChevronDownIcon className="w-2 h-auto ml-3 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        </Popover.Button>
+        <Transition.Root>
+          <Transition.Child
+            as={Fragment}
+            enter="duration-150 ease-out"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="duration-150 ease-in"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Popover.Overlay className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-sm dark:bg-black/80" />
+          </Transition.Child>
+          <Transition.Child
+            as={Fragment}
+            enter="duration-150 ease-out"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="duration-150 ease-in"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <Popover.Panel
+              focus
+              className="fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-gray-900 dark:ring-zinc-800"
+            >
+              <div className="flex flex-row-reverse items-center justify-between">
+                <Popover.Button aria-label="Close menu" className="p-1 -m-1">
+                  <CloseIcon className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
+                </Popover.Button>
+                <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                  Navigation
+                </h2>
+              </div>
+              <nav className="mt-6">
+                <ul className="-my-2 text-base text-left divide-y divide-zinc-100 dark:divide-zinc-100/5">
+                  {navigation.map((item) => (
+                    <MobileNavItem item={item}>{item.name}</MobileNavItem>
+                  ))}
+                </ul>
+              </nav>
+            </Popover.Panel>
+          </Transition.Child>
+        </Transition.Root>
+      </Popover>
+    );
+  }
+
   return (
     <header>
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex sm:flex-1">
           <NavLink
             to="/"
             className={({isActive}) =>
@@ -43,8 +154,19 @@ const CustomHeader = () => {
             <img className="w-auto h-8 rounded-full" src={Me} alt="" />
           </NavLink>
         </div>
-        <div className="flex lg:hidden">
-          <button onClick={toggleTheme} className="mr-4">
+        <div className="flex sm:hidden">
+          <button
+            type="button"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <span className="sr-only">Open main menu</span>
+            <MobileNavigation className="pointer-events-auto sm:hidden" />
+          </button>
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-2 ml-4 transition rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
+          >
             {theme === Theme.DARK ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,16 +199,8 @@ const CustomHeader = () => {
               </svg>
             )}
           </button>
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="w-6 h-6" aria-hidden="true" />
-          </button>
         </div>
-        <nav className="hidden pointer-events-auto md:block">
+        <nav className="hidden pointer-events-auto sm:block">
           <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10">
             {navigation.map((item) => (
               <li key={item.href} className="mb-0">
@@ -110,8 +224,11 @@ const CustomHeader = () => {
             ))}
           </ul>
         </nav>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <button onClick={toggleTheme}>
+        <div className="hidden sm:flex sm:flex-1 sm:justify-end">
+          <button
+            onClick={toggleTheme}
+            className="px-3 py-2 ml-4 transition rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
+          >
             {theme === Theme.DARK ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -146,50 +263,64 @@ const CustomHeader = () => {
           </button>
         </div>
       </nav>
-      <Dialog
+
+      {/* <Dialog
         as="div"
-        className="lg:hidden"
+        className="sm:hidden"
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
         <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full px-6 py-6 overflow-y-auto bg-white sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full px-6 py-6 overflow-y-auto bg-white dark:bg-gray-900 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="w-auto h-8"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
+            <div className="flex sm:flex-1">
+              <NavLink to="/" className="-m-1.5 p-1.5">
+                <span className="sr-only">Your Company</span>
+                <img className="w-auto h-8 rounded-full" src={Me} alt="" />
+              </NavLink>
+            </div>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 "
+              className="-m-2.5 rounded-md p-2.5"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <XMarkIcon className="w-6 h-6" aria-hidden="true" />
+              <XMarkIcon className="w-6 h-6 " aria-hidden="true" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="text-black dark:text-white"
+                className="w-6 h-6"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
             </button>
           </div>
           <div className="flow-root mt-6">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="py-6 space-y-2">
                 {navigation.map((item) => (
-                  <a
+                  <Link
+                    to={item.href}
                     key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 -mx-3 text-base font-semibold leading-7 text-gray-900 rounded-lg hover:bg-gray-50"
+                    className="block px-3 py-2 -mx-3 text-base font-semibold leading-7 rounded-lg hover:bg-teal-500 hover:text-white"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
               <div className="py-6 text-blue-500"></div>
             </div>
           </div>
         </Dialog.Panel>
-      </Dialog>
+      </Dialog> */}
     </header>
   );
 };
