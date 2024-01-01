@@ -114,7 +114,6 @@ const CustomHeader = () => {
         <Popover.Button
           as={Link}
           to={item.href}
-          key={item.href}
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
@@ -169,8 +168,10 @@ const CustomHeader = () => {
               </div>
               <nav className="mt-6">
                 <ul className="-my-2 text-base text-left divide-y divide-zinc-100 dark:divide-zinc-100/5">
-                  {navigation.map((item) => (
-                    <MobileNavItem item={item}>{item.name}</MobileNavItem>
+                  {navigation.map((item, index) => (
+                    <MobileNavItem item={item} key={index}>
+                      {item.name}
+                    </MobileNavItem>
                   ))}
                 </ul>
               </nav>
@@ -188,9 +189,8 @@ const CustomHeader = () => {
     item: {name: string; href: string};
   }) {
     return (
-      <li key={item.href} className="mb-0">
+      <li className="mb-0">
         <Link
-          key={item.name}
           to={item.href}
           className={
             item.name !== 'GitHub' &&
@@ -212,9 +212,11 @@ const CustomHeader = () => {
   function DesktopNavigation() {
     return (
       <nav className="hidden pointer-events-auto sm:block">
-        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10">
-          {navigation.map((item) => (
-            <DesktopNavItem item={item}>{item.name}</DesktopNavItem>
+        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
+          {navigation.map((item, index) => (
+            <DesktopNavItem item={item} key={index}>
+              {item.name}
+            </DesktopNavItem>
           ))}
         </ul>
       </nav>
@@ -235,7 +237,11 @@ const CustomHeader = () => {
             }
           >
             <span className="sr-only">Your Company</span>
-            <img className="w-auto h-8 rounded-full" src={Me} alt="" />
+            <img
+              className="w-auto h-8 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
+              src={Me}
+              alt="Photo of Johnny Fiive"
+            />
           </NavLink>
         </div>
         <div className="flex sm:hidden">
