@@ -118,7 +118,11 @@ function App() {
   const nonce = useNonce();
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
-
+  // Initializing variable to allow debug-screens tailwind plugin to work only in development environment
+  let debugScreens;
+  if (process.env.NODE_ENV === 'development') {
+    debugScreens = 'debug-screens';
+  }
   return (
     <html lang="en" className={clsx(theme)}>
       <head>
@@ -128,7 +132,9 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full text-black bg-white dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800">
+      <body
+        className={`h-full text-black bg-white ${debugScreens} dark:bg-gray-900 dark:text-white selection:bg-gray-50 dark:selection:bg-gray-800`}
+      >
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
           {/* <Layout {...data}> */}
