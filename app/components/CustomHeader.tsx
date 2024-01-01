@@ -1,6 +1,4 @@
 import {Fragment, useState} from 'react';
-import {Dialog} from '@headlessui/react';
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
 import {Theme, useTheme} from '../utils/theme-provider';
 import Me from '../../public/johnny.jpg';
 import {useLocation} from '@remix-run/react';
@@ -52,6 +50,55 @@ const CustomHeader = () => {
           strokeLinejoin="round"
         />
       </svg>
+    );
+  }
+
+  function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+        />
+      </svg>
+    );
+  }
+
+  function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-6 h-6 text-gray-500"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+        />
+      </svg>
+    );
+  }
+
+  function DarkModeToggle() {
+    return (
+      <button
+        onClick={toggleTheme}
+        className="px-3 py-2 ml-4 transition rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
+      >
+        {theme === Theme.DARK ? <SunIcon /> : <MoonIcon />}
+      </button>
     );
   }
 
@@ -137,6 +184,46 @@ const CustomHeader = () => {
     );
   }
 
+  function DesktopNavItem({
+    item,
+  }: {
+    children: React.ReactNode;
+    item: {name: string; href: string};
+  }) {
+    return (
+      <li key={item.href} className="mb-0">
+        <Link
+          key={item.name}
+          to={item.href}
+          className={
+            item.name !== 'GitHub' &&
+            item.href.split('/')[1] === pathname.split('/')[1]
+              ? 'relative block px-3 py-2 transition text-teal-500 dark:hover:text-teal-400'
+              : 'relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400'
+          }
+        >
+          {item.name}
+          {item.name !== 'GitHub' &&
+          item.href.split('/')[1] === pathname.split('/')[1] ? (
+            <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+          ) : null}
+        </Link>
+      </li>
+    );
+  }
+
+  function DesktopNavigation() {
+    return (
+      <nav className="hidden pointer-events-auto sm:block">
+        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10">
+          {navigation.map((item) => (
+            <DesktopNavItem item={item}>{item.name}</DesktopNavItem>
+          ))}
+        </ul>
+      </nav>
+    );
+  }
+
   return (
     <header>
       <nav
@@ -163,164 +250,18 @@ const CustomHeader = () => {
             <span className="sr-only">Open main menu</span>
             <MobileNavigation className="pointer-events-auto sm:hidden" />
           </button>
-          <button
-            onClick={toggleTheme}
-            className="px-3 py-2 ml-4 transition rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
-          >
-            {theme === Theme.DARK ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6 text-gray-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                />
-              </svg>
-            )}
-          </button>
+          <DarkModeToggle />
         </div>
-        <nav className="hidden pointer-events-auto sm:block">
-          <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10">
-            {navigation.map((item) => (
-              <li key={item.href} className="mb-0">
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={
-                    item.name !== 'GitHub' &&
-                    item.href.split('/')[1] === pathname.split('/')[1]
-                      ? 'relative block px-3 py-2 transition text-teal-500 dark:hover:text-teal-400'
-                      : 'relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400'
-                  }
-                >
-                  {item.name}
-                  {item.name !== 'GitHub' &&
-                  item.href.split('/')[1] === pathname.split('/')[1] ? (
-                    <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
-                  ) : null}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <DesktopNavigation />
         <div className="hidden sm:flex sm:flex-1 sm:justify-end">
           <button
             onClick={toggleTheme}
             className="px-3 py-2 ml-4 transition rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
           >
-            {theme === Theme.DARK ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6 text-gray-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                />
-              </svg>
-            )}
+            {theme === Theme.DARK ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
       </nav>
-
-      {/* <Dialog
-        as="div"
-        className="sm:hidden"
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-      >
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full px-6 py-6 overflow-y-auto bg-white dark:bg-gray-900 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <div className="flex sm:flex-1">
-              <NavLink to="/" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img className="w-auto h-8 rounded-full" src={Me} alt="" />
-              </NavLink>
-            </div>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="w-6 h-6 " aria-hidden="true" />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="text-black dark:text-white"
-                className="w-6 h-6"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="flow-root mt-6">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="py-6 space-y-2">
-                {navigation.map((item) => (
-                  <Link
-                    to={item.href}
-                    key={item.name}
-                    className="block px-3 py-2 -mx-3 text-base font-semibold leading-7 rounded-lg hover:bg-teal-500 hover:text-white"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className="py-6 text-blue-500"></div>
-            </div>
-          </div>
-        </Dialog.Panel>
-      </Dialog> */}
     </header>
   );
 };
