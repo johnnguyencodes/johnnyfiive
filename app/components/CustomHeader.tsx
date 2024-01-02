@@ -207,7 +207,7 @@ const CustomHeader = () => {
   }
 
   return (
-    <header>
+    <header className="bg-lightmode-white dark:bg-darkmode-black">
       <nav
         className="flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -227,7 +227,7 @@ const CustomHeader = () => {
           <DarkModeToggle />
         </div>
         <DesktopNavigation />
-        <div className="hidden sm:flex sm:flex-1 sm:justify-end">
+        <div className="hidden sm:justify-end sm:flex sm:flex-1 ">
           <DarkModeToggle />
         </div>
       </nav>

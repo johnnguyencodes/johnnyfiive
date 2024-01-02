@@ -133,7 +133,7 @@ function App() {
         <Links />
       </head>
       <body
-        className={`h-full text-lightmode-black bg-lightmode-white ${debugScreens} dark:bg-darkmode-black dark:text-darkmode-white  dark:selection:bg-darkmode-highlight selection:bg-lightmode-highlight selection:text-darkmode-black dark:selection:text-lightmode-black`}
+        className={`h-full text-lightmode-black bg-white ${debugScreens} dark:bg-black dark:text-darkmode-white  dark:selection:bg-darkmode-highlight selection:bg-lightmode-highlight selection:text-darkmode-black dark:selection:text-lightmode-black`}
       >
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
@@ -160,9 +160,10 @@ export default function AppWithProviders() {
 function CustomLayout({children}: {children: ReactNode}) {
   return (
     <div>
-      {/* <CustomHeader /> */}
-      <CustomHeader />
-      <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">{children}</main>
+      <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8 bg-lightmode-white dark:bg-darkmode-black border-x dark:border-white/10 border-zinc-900/5">
+        <CustomHeader />
+        {children}
+      </main>
     </div>
   );
 }

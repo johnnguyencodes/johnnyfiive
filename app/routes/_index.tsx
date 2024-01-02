@@ -14,7 +14,7 @@ const IndexPage = () => {
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="items-center space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
+        <div className="items-center space-y-2 xl:space-y-0 xl:grid xl:grid-cols-3 xl:gap-x-8 ">
           <div className="flex flex-col items-center pt-8">
             <img
               src={Me}
