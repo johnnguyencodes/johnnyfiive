@@ -33,18 +33,18 @@ const BlogSlug = () => {
   const {blogpost} = useLoaderData<typeof loader>() as iAppProps;
 
   return (
-    <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700 lg:px-48">
+    <div className="xl:divide-y xl:divide-lightmode-black xl:dark:divide-darkmode-white lg:px-48">
       <header className="pt-6 xl:pb-6">
         <div className="space-y-1 text-center">
           <div className="space-y-10">
             <div>
-              <p className="text-base font-medium leading-6 text-teal-500">
+              <p className="text-base font-medium leading-6 text-lightmode-red dark:text-darkmode-red">
                 {new Date(blogpost[0]._createdAt).toISOString().split('T')[0]}
               </p>
             </div>
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+            <h1 className="text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
               {blogpost[0].title}
             </h1>
           </div>
@@ -53,7 +53,7 @@ const BlogSlug = () => {
 
       <div className="pb-8 divide-y divide-gray-200 dark:divide-gray-700 xl:divide-y-0">
         <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-          <div className="pt-10 pb-8 prose max-w-none dark:prose-invert">
+          <div className="pt-10 pb-8 prose max-w-none text-lightmode-black dark:text-darkmode-white">
             <PortableText value={blogpost[0].body} />
           </div>
         </div>
