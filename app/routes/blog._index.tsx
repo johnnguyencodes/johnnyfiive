@@ -42,7 +42,7 @@ const Blog = () => {
             <li key={blogpost._id} className="py-4">
               <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                 <div>
-                  <p className="text-base font-medium leading-6 text-lightmode-red dark:text-darkmode-red">
+                  <p className="text-base font-medium leading-6 text-lightmode-blue dark:text-darkmode-blue">
                     {new Date(blogpost._createdAt).toISOString().split('T')[0]}
                   </p>
                 </div>

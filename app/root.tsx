@@ -133,7 +133,7 @@ function App() {
         <Links />
       </head>
       <body
-        className={`h-full text-lightmode-black bg-white ${debugScreens} dark:bg-black dark:text-darkmode-white  dark:selection:bg-darkmode-highlight selection:bg-lightmode-highlight selection:text-darkmode-black dark:selection:text-lightmode-black`}
+        className={`h-full flex text-lightmode-black bg-white ${debugScreens} dark:bg-black dark:text-darkmode-white  dark:selection:bg-darkmode-highlight selection:bg-lightmode-highlight selection:text-darkmode-black dark:selection:text-lightmode-black`}
       >
         <CustomLayout>
           {/* Commenting out Shopify layout due to unknown issue caused by shadcn */}
@@ -160,10 +160,17 @@ export default function AppWithProviders() {
 function CustomLayout({children}: {children: ReactNode}) {
   return (
     <div>
-      <main className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8 bg-lightmode-white dark:bg-darkmode-black border-x dark:border-white/10 border-zinc-900/5">
+      <div className="fixed inset-0 flex justify-center sm:px-8">
+        <div className="flex w-full max-w-7xl lg:px-8">
+          <div className="w-full bg-lightmode-white dark:bg-darkmode-black ring-1 ring-zinc-100 dark:ring-zinc-300/20" />
+        </div>
+      </div>
+      <div className="relative flex flex-col w-full">
         <CustomHeader />
-        {children}
-      </main>
+        <main className="flex w-full px-4 mx-auto sm:px-6 lg:px-8 bg-lightmode-white dark:bg-darkmode-black border-x dark:border-white/10 border-zinc-900/5">
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

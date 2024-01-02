@@ -77,9 +77,9 @@
 
 @layer components {
   .internal-link {
-    @apply transition hover:bg-lightmode-highlight dark:hover:bg-darkmode-highlight hover:text-darkmode-black dark:hover:text-lightmode-black after:content-['→'];
+    @apply transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300 after:content-['→'];
   }
   .external-link {
-    @apply transition hover:bg-lightmode-highlight dark:hover:bg-darkmode-highlight hover:text-darkmode-black dark:hover:text-lightmode-black after:content-['↗'];
+    @apply transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300 after:content-['↗'];
   }
 }

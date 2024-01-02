@@ -38,7 +38,7 @@ const BlogSlug = () => {
         <div className="space-y-1 text-center">
           <div className="space-y-10">
             <div>
-              <p className="text-base font-medium leading-6 text-lightmode-red dark:text-darkmode-red">
+              <p className="text-base font-medium leading-6 text-lightmode-blue dark:text-darkmode-blue">
                 {new Date(blogpost[0]._createdAt).toISOString().split('T')[0]}
               </p>
             </div>
