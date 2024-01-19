@@ -83,18 +83,9 @@ const IndexPage = () => {
               Web developer and mountaineer-in-training.
             </h1>
             <p className="mt-6 text-base">
-              I'm John, a web developer based in Orange County. I'm the web
-              development manager at{' '}
-              <a
-                href="https://www.zymoresearch.com"
-                target="_blank"
-                rel="noreferrer opener"
-                className="external-link"
-              >
-                Zymo Research
-              </a>
-              , a bio-tech research company where we manufacture research tools
-              that help scientists find cures for diseases.
+              I'm John, a web developer based in Orange County. I specialize in
+              Shopify development and eCommerce platform management. I also
+              enjoy mountaineering, hiking, and backpacking.
             </p>
             <div className="flex gap-6 mt-6">
               <SocialLink

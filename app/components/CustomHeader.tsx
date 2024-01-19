@@ -100,8 +100,8 @@ const CustomHeader = () => {
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
-              ? 'block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-400 dark:text-darkmode-blue dark:hover:text-darkmode-blue-400'
-              : 'block px-3 py-2 transition hover:text-lightmode-blue-400 dark:hover:text-darkmode-blue-400'
+              ? 'block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300'
+              : 'block px-3 py-2 transition hover:text-lightmode-blue-300 dark:hover:text-darkmode-blue-300'
           }
         >
           {children}
@@ -178,8 +178,8 @@ const CustomHeader = () => {
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
-              ? 'relative block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-400 dark:text-darkmode-blue dark:hover:text-darkmode-blue-400'
-              : 'relative block px-3 py-2 transition hover:text-lightmode-blue-400 dark:hover:text-darkmode-blue-400'
+              ? 'relative block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300'
+              : 'relative block px-3 py-2 transition hover:text-lightmode-blue-300 dark:hover:text-darkmode-blue-300'
           }
         >
           {item.name}
