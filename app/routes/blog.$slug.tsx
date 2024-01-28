@@ -1,6 +1,6 @@
 import React from 'react';
 import {useLoaderData} from '@remix-run/react';
-import {LoaderArgs} from '@remix-run/node';
+import {LoaderFunctionArgs} from '@remix-run/node';
 import {json} from '@shopify/remix-oxygen';
 import {Blogpost} from '~/lib/interface';
 import {sanityClient} from '~/lib/sanity';
@@ -11,7 +11,7 @@ interface iAppProps {
   blogpost: Blogpost;
 }
 
-export async function loader({params}: LoaderArgs) {
+export async function loader({params}: LoaderFunctionArgs) {
   const query = `
     *[_type == 'blog' && slug.current == "${params.slug}"] {
       title,
