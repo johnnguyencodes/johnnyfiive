@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useLoaderData} from '@remix-run/react';
-import {LoaderFunctionArgs} from '@remix-run/node';
+import {LoaderArgs} from '@remix-run/node';
 import {json} from '@shopify/remix-oxygen';
 import {Blogposts} from '~/lib/interface';
 import {sanityClient} from '~/lib/sanity';
@@ -10,7 +10,7 @@ interface iAppProps {
   blogposts: Blogposts[];
 }
 
-export async function loader({}: LoaderFunctionArgs) {
+export async function loader({}: LoaderArgs) {
   const query = `
   *[_type == 'blog' ] {
     title,
@@ -31,7 +31,7 @@ export async function loader({}: LoaderFunctionArgs) {
 const Blog = () => {
   const {blogposts} = useLoaderData<typeof loader>() as iAppProps;
   return (
-    <Container className="mt-16">
+    <Container className="mt-16 lg:mt-32">
       <div className="divide-y divide-lightmode-black dark:divide-darkmode-white">
         <div className="pt-6 pb-8 space-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-right sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
