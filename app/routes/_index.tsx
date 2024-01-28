@@ -1,4 +1,17 @@
 import Me from '../../public/johnny.jpg';
+import {
+  GitHubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+} from '~/components/icons/SocialIcons';
+import {Link} from '@remix-run/react';
+import image1 from '../../public/images/photos/image-1.jpg';
+import image2 from '../../public/images/photos/image-2.jpg';
+import image3 from '../../public/images/photos/image-3.jpg';
+import image4 from '../../public/images/photos/image-4.jpg';
+import image5 from '../../public/images/photos/image-5.jpg';
+import clsx from 'clsx';
+import {Container} from '~/components/Container';
 
 export function meta() {
   return [
@@ -10,58 +23,91 @@ export function meta() {
   ];
 }
 
+function SocialLink({
+  icon: Icon,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Link> & {
+  icon: React.ComponentType<{className?: string}>;
+}) {
+  return (
+    <Link className="p-1 -m-1 group" {...props}>
+      <Icon className="w-6 h-6 transition fill-lightmode-blue hover:fill-lightmode-blue-300 dark:fill-darkmode-blue dark:hover:fill-darkmode-blue-300 group-hover:fill-lightmode-blue-300 dark:group-hover:fill-darkmode-blue-300" />
+    </Link>
+  );
+}
+
+function Photos() {
+  let rotations = [
+    'rotate-2',
+    '-rotate-2',
+    'rotate-2',
+    'rotate-2',
+    '-rotate-2',
+  ];
+
+  return (
+    <div className="static w-screen mt-16 sm:mt-20">
+      <div className="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
+        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+          <div
+            key={imageIndex}
+            className={clsx(
+              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+              rotations[imageIndex % rotations.length],
+            )}
+          >
+            <img
+              src={image}
+              alt=""
+              sizes="(min-width: 640px) 18rem, 11rem"
+              className="absolute inset-0 object-cover w-full h-full"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 const IndexPage = () => {
   return (
     <>
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="items-center space-y-2 xl:space-y-0 xl:grid xl:grid-cols-3 xl:gap-x-8 ">
-          <div className="flex flex-col items-center pt-8">
-            <img
-              src={Me}
-              alt="Image of myself"
-              className="object-cover object-top w-24 h-24 rounded-full"
-            />
-            <div className="flex pt-6 space-x-5">
-              <a href="https://github.com/johnnguyencodes" target="_blank">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="currentColor"
-                  className="w-8 h-8 text-lightmode-red dark:text-darkmode-red hover:text-lightmode-red-600 dark:hover:text-darkmode-red-600"
-                >
-                  <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" />
-                </svg>
-              </a>
-              <a href="https://linkedin.com/in/johnnguyencodes" target="_blank">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="currentColor"
-                  className="w-8 h-8 text-lightmode-red dark:text-darkmode-red hover:text-lightmode-red-600 dark:hover:text-darkmode-red-600"
-                >
-                  <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zM349.3 793.7H230.6V411.9h118.7v381.8zm-59.3-434a68.8 68.8 0 1168.8-68.8c-.1 38-30.9 68.8-68.8 68.8zm503.7 434H675.1V608c0-44.3-.8-101.2-61.7-101.2-61.7 0-71.2 48.2-71.2 98v188.9H423.7V411.9h113.8v52.2h1.6c15.8-30 54.5-61.7 112.3-61.7 120.2 0 142.3 79.1 142.3 181.9v209.4z" />
-                </svg>
-              </a>
-              <a href="https://github.com/johnnguyencodes" target="_blank">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="currentColor"
-                  className="w-8 h-8 text-lightmode-red dark:text-darkmode-red hover:text-lightmode-red-600 dark:hover:text-darkmode-red-600"
-                >
-                  <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" />
-                </svg>
-              </a>
-              <a href="https://github.com/johnnguyencodes" target="_blank">
-                <svg
-                  viewBox="0 0 1024 1024"
-                  fill="currentColor"
-                  className="w-8 h-8 text-lightmode-red dark:text-darkmode-red hover:text-lightmode-red-600 dark:hover:text-darkmode-red-600"
-                >
-                  <path d="M511.6 76.3C264.3 76.2 64 276.4 64 523.5 64 718.9 189.3 885 363.8 946c23.5 5.9 19.9-10.8 19.9-22.2v-77.5c-135.7 15.9-141.2-73.9-150.3-88.9C215 726 171.5 718 184.5 703c30.9-15.9 62.4 4 98.9 57.9 26.4 39.1 77.9 32.5 104 26 5.7-23.5 17.9-44.5 34.7-60.8-140.6-25.2-199.2-111-199.2-213 0-49.5 16.3-95 48.3-131.7-20.4-60.5 1.9-112.3 4.9-120 58.1-5.2 118.5 41.6 123.2 45.3 33-8.9 70.7-13.6 112.9-13.6 42.4 0 80.2 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.3-43.9 2.9 7.7 24.7 58.3 5.5 118 32.4 36.8 48.9 82.7 48.9 132.3 0 102.2-59 188.1-200 212.9a127.5 127.5 0 0138.1 91v112.5c.8 9 0 17.9 15 17.9 177.1-59.7 304.6-227 304.6-424.1 0-247.2-200.4-447.3-447.5-447.3z" />
-                </svg>
-              </a>
+      <Container className="mt-16 sm:mt-32">
+        <div className="mx-auto w-full max-w-7xl lg:px-8">
+          <img
+            src={Me}
+            alt="Image of myself"
+            className="object-cover object-top w-auto h-16 mb-8 rounded-full"
+          />
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              Web developer and mountaineer-in-training.
+            </h1>
+            <p className="mt-6 text-base">
+              I'm John, a web developer based in Orange County. I specialize in
+              Shopify development and eCommerce platform management. I also
+              enjoy mountaineering, hiking, and backpacking.
+            </p>
+            <div className="flex gap-6 mt-6">
+              <SocialLink
+                to="https://instagram.com/johnnyfiive_"
+                aria-label="Follow on Instagram"
+                icon={InstagramIcon}
+              />
+              <SocialLink
+                to="https://github.com/johnnguyencodes"
+                aria-label="Follow on GitHub"
+                icon={GitHubIcon}
+              />
+              <SocialLink
+                to="https://linkedin.com/in/johnnguyencodes"
+                aria-label="Follow on LinkedIn"
+                icon={LinkedInIcon}
+              />
             </div>
           </div>
         </div>
-      </div>
+      </Container>
+      <Photos />
     </>
   );
 };

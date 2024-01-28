@@ -6,6 +6,7 @@ import {Link, NavLink} from '@remix-run/react';
 import {Popover, Transition} from '@headlessui/react';
 import MoonIcon from '../components/icons/MoonIcon';
 import SunIcon from '../components/icons/SunIcon';
+import {Container} from '../components/Container';
 
 const navigation = [
   {name: 'About', href: '/about'},
@@ -66,7 +67,7 @@ const CustomHeader = () => {
       >
         <span className="sr-only">Your Company</span>
         <img
-          className="w-auto h-8 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
+          className="w-auto h-10 rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20"
           src={Me}
           alt="Photo of Johnny Fiive"
         />
@@ -78,7 +79,7 @@ const CustomHeader = () => {
     return (
       <button
         onClick={toggleTheme}
-        className="px-3 py-2 ml-4 transition rounded-full shadow-lg dark:hover:ring-white/20 group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:bg-darkmode-black-700"
+        className="h-10 px-3 py-2 ml-4 transition rounded-full shadow-lg dark:hover:ring-white/20 group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:bg-darkmode-black-700"
       >
         {theme === Theme.DARK ? <MoonIcon /> : <SunIcon />}
       </button>
@@ -100,8 +101,8 @@ const CustomHeader = () => {
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
-              ? 'block py-2 transition text-teal-500 dark:hover:text-teal-400'
-              : 'block py-2 transition hover:text-teal-500 dark:hover:text-teal-400'
+              ? 'block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300'
+              : 'block px-3 py-2 transition hover:text-lightmode-blue-300 dark:hover:text-darkmode-blue-300'
           }
         >
           {children}
@@ -115,7 +116,7 @@ const CustomHeader = () => {
   ) {
     return (
       <Popover {...props}>
-        <Popover.Button className="flex items-center px-4 py-2 text-sm font-medium rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
+        <Popover.Button className="flex items-center h-10 px-4 py-2 text-sm font-medium rounded-full shadow-lg group shadow-zinc-800/5 ring-1 ring-zinc-900/5 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20 dark:bg-darkmode-black-700">
           Menu
           <ChevronDownIcon className="w-2 h-auto ml-3 stroke-darkmode-black group-hover:stroke-darkmode-black-400 dark:group-hover:stroke-darkmode-black-400" />
         </Popover.Button>
@@ -178,14 +179,14 @@ const CustomHeader = () => {
           className={
             item.name !== 'GitHub' &&
             item.href.split('/')[1] === pathname.split('/')[1]
-              ? 'relative block px-3 py-2 transition text-lightmode-red hover:text-lightmode-red-400 dark:text-darkmode-red dark:hover:text-darkmode-red-400'
-              : 'relative block px-3 py-2 transition hover:text-lightmode-red-400 dark:hover:text-darkmode-red-400'
+              ? 'relative block px-3 py-2 h-10 transition text-lightmode-blue hover:text-lightmode-blue-300 dark:text-darkmode-blue dark:hover:text-darkmode-blue-300'
+              : 'relative block px-3 py-2 transition hover:text-lightmode-blue-300 dark:hover:text-darkmode-blue-300'
           }
         >
           {item.name}
           {item.name !== 'GitHub' &&
           item.href.split('/')[1] === pathname.split('/')[1] ? (
-            <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-lightmode-red/0 via-lightmode-red/40 to-lightmode-red/0 dark:from-darkmode-red/0 dark:via-darkmode-red/40 dark:to-darkmode-red/0 " />
+            <span className="absolute h-px dark:to-darkmode-blue/0 inset-x-1 -bottom-px bg-gradient-to-r from-lightmode-blue/0 via-lightmode-blue/40 to-lightmode-blue/0 dark:from-darkmode-blue/0 dark:via-darkmode-blue/40 " />
           ) : null}
         </Link>
       </li>
@@ -195,7 +196,7 @@ const CustomHeader = () => {
   function DesktopNavigation() {
     return (
       <nav className="hidden pointer-events-auto sm:block">
-        <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:bg-darkmode-black-700 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
+        <ul className="flex h-10 px-3 text-sm font-medium rounded-full shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:bg-darkmode-black-700 hover:ring-darkmode-black-50 backdrop-blur dark:ring-white/10 dark:hover:ring-white/20">
           {navigation.map((item, index) => (
             <DesktopNavItem item={item} key={index}>
               {item.name}
@@ -207,31 +208,38 @@ const CustomHeader = () => {
   }
 
   return (
-    <header className="bg-lightmode-white dark:bg-darkmode-black">
-      <nav
-        className="flex items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
-        <div className="flex sm:flex-1">
-          <HomeLink />
-        </div>
-        <div className="flex sm:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <MobileNavigation className="pointer-events-auto sm:hidden" />
-          </button>
-          <DarkModeToggle />
-        </div>
-        <DesktopNavigation />
-        <div className="hidden sm:justify-end sm:flex sm:flex-1 ">
-          <DarkModeToggle />
-        </div>
-      </nav>
-    </header>
+    <Container
+      className="top-0 -mb-3 pt-3"
+      style={{
+        position: 'var(--header-position)' as React.CSSProperties['position'],
+      }}
+    >
+      <header className="relative z-50 flex flex-col flex-none">
+        <nav
+          className="flex items-center justify-between p-6 lg:px-8"
+          aria-label="Global"
+        >
+          <div className="flex sm:flex-1">
+            <HomeLink />
+          </div>
+          <div className="flex sm:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <MobileNavigation className="pointer-events-auto sm:hidden" />
+            </button>
+            <DarkModeToggle />
+          </div>
+          <DesktopNavigation />
+          <div className="hidden sm:justify-end sm:flex sm:flex-1 ">
+            <DarkModeToggle />
+          </div>
+        </nav>
+      </header>
+    </Container>
   );
 };
 

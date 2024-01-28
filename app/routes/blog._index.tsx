@@ -4,6 +4,7 @@ import {LoaderArgs} from '@remix-run/node';
 import {json} from '@shopify/remix-oxygen';
 import {Blogposts} from '~/lib/interface';
 import {sanityClient} from '~/lib/sanity';
+import {Container} from '~/components/Container';
 
 interface iAppProps {
   blogposts: Blogposts[];
@@ -30,7 +31,7 @@ export async function loader({}: LoaderArgs) {
 const Blog = () => {
   const {blogposts} = useLoaderData<typeof loader>() as iAppProps;
   return (
-    <>
+    <Container className="mt-16 lg:mt-32">
       <div className="divide-y divide-lightmode-black dark:divide-darkmode-white">
         <div className="pt-6 pb-8 space-2 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-right sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
@@ -42,7 +43,7 @@ const Blog = () => {
             <li key={blogpost._id} className="py-4">
               <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
                 <div>
-                  <p className="text-base font-medium leading-6 text-lightmode-red dark:text-darkmode-red">
+                  <p className="text-base font-medium leading-6 text-lightmode-blue dark:text-darkmode-blue">
                     {new Date(blogpost._createdAt).toISOString().split('T')[0]}
                   </p>
                 </div>
@@ -65,7 +66,7 @@ const Blog = () => {
           ))}
         </ul>
       </div>
-    </>
+    </Container>
   );
 };
 
