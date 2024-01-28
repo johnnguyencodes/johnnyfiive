@@ -196,7 +196,7 @@ function Role({role}: {role: Role}) {
 function Resume() {
   let resume: Array<Role> = [
     {
-      company: 'Zymo Research',
+      company: 'Company 1',
       title: 'Front-End Web Developer II',
       logo: logoPlanetaria,
       start: '2021',
@@ -206,7 +206,7 @@ function Resume() {
       },
     },
     {
-      company: 'LearningFuze',
+      company: 'Company 2',
       title: 'Alumni Mentor',
       logo: logoAirbnb,
       start: '2024',
@@ -216,7 +216,7 @@ function Resume() {
       },
     },
     {
-      company: 'Studio Chateau',
+      company: 'Company 3',
       title: 'Catalog Coordinator',
       logo: logoFacebook,
       start: '2016',
