@@ -167,9 +167,7 @@ function CustomLayout({children}: {children: ReactNode}) {
       </div>
       <div className="relative flex flex-col w-full">
         <CustomHeader />
-        <main className="flex w-full px-4 mx-auto sm:px-6 lg:px-8 bg-lightmode-white dark:bg-darkmode-black border-x dark:border-white/10 border-zinc-900/5">
-          {children}
-        </main>
+        <main className="flex-auto">{children}</main>
       </div>
     </div>
   );

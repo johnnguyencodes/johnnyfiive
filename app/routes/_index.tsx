@@ -11,6 +11,7 @@ import image3 from '../../public/images/photos/image-3.jpg';
 import image4 from '../../public/images/photos/image-4.jpg';
 import image5 from '../../public/images/photos/image-5.jpg';
 import clsx from 'clsx';
+import {Container} from '~/components/Container';
 
 export function meta() {
   return [
@@ -67,12 +68,11 @@ function Photos() {
     </div>
   );
 }
-
 const IndexPage = () => {
   return (
     <>
-      <div className="p-6 divide-y divide-gray-200 dark:divide-gray-700 lg:px-8">
-        <div>
+      <Container className="mt-16 sm:mt-32">
+        <div className="mx-auto w-full max-w-7xl lg:px-8">
           <img
             src={Me}
             alt="Image of myself"
@@ -106,8 +106,8 @@ const IndexPage = () => {
             </div>
           </div>
         </div>
-        <Photos />
-      </div>
+      </Container>
+      <Photos />
     </>
   );
 };

@@ -6,6 +6,7 @@ import {Link, NavLink} from '@remix-run/react';
 import {Popover, Transition} from '@headlessui/react';
 import MoonIcon from '../components/icons/MoonIcon';
 import SunIcon from '../components/icons/SunIcon';
+import {Container} from '../components/Container';
 
 const navigation = [
   {name: 'About', href: '/about'},
@@ -207,31 +208,38 @@ const CustomHeader = () => {
   }
 
   return (
-    <header className="relative z-50 flex flex-col flex-none pointer-events-none">
-      <nav
-        className="flex items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
-        <div className="flex sm:flex-1">
-          <HomeLink />
-        </div>
-        <div className="flex sm:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <MobileNavigation className="pointer-events-auto sm:hidden" />
-          </button>
-          <DarkModeToggle />
-        </div>
-        <DesktopNavigation />
-        <div className="hidden sm:justify-end sm:flex sm:flex-1 ">
-          <DarkModeToggle />
-        </div>
-      </nav>
-    </header>
+    <Container
+      className="top-0 -mb-3 pt-3"
+      style={{
+        position: 'var(--header-position)' as React.CSSProperties['position'],
+      }}
+    >
+      <header className="relative z-50 flex flex-col flex-none">
+        <nav
+          className="flex items-center justify-between p-6 lg:px-8"
+          aria-label="Global"
+        >
+          <div className="flex sm:flex-1">
+            <HomeLink />
+          </div>
+          <div className="flex sm:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Open main menu</span>
+              <MobileNavigation className="pointer-events-auto sm:hidden" />
+            </button>
+            <DarkModeToggle />
+          </div>
+          <DesktopNavigation />
+          <div className="hidden sm:justify-end sm:flex sm:flex-1 ">
+            <DarkModeToggle />
+          </div>
+        </nav>
+      </header>
+    </Container>
   );
 };
 
